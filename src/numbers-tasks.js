@@ -585,8 +585,23 @@ function getIntegerPartNumber(number) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(x1, x2, x3) {
+  let arrNum = [x1, x2, x3];
+  let isInt = true;
+  let pow = 1;
+  arrNum.forEach((element) => {
+    if (!Number.isInteger(element)) {
+      isInt = false;
+    }
+  });
+
+  if (!isInt) {
+    pow *= 10;
+    arrNum = arrNum.map((el) => {
+      return el * pow;
+    });
+  }
+  return arrNum.reduce((acc, curr) => +acc + +curr) / pow;
 }
 
 /**
